@@ -104,7 +104,168 @@
     </script>
 <style>
         html { scroll-behavior: smooth; }
-        .ambient-shadow:hover { box-shadow: 0 8px 30px rgba(0, 209, 255, 0.15); }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 209, 255, 0.6);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-down {
+            animation: slideDown 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        /* Hover Effects */
+        .ambient-shadow {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 209, 255, 0.1);
+        }
+        
+        .ambient-shadow:hover {
+            box-shadow: 0 12px 35px rgba(0, 209, 255, 0.25);
+            transform: translateY(-4px);
+        }
+        
+        /* Profile Image Styling */
+        .profile-image {
+            animation: fadeInRight 0.8s ease-out, float 3s ease-in-out 0.8s infinite;
+            transition: all 0.3s ease-out;
+            box-shadow: 0 8px 32px rgba(0, 209, 255, 0.2);
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 16px 48px rgba(0, 209, 255, 0.35);
+        }
+        
+        /* Smooth Transitions */
+        * {
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Button Enhancements */
+        button, a[href] {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Stagger Animation */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        
+        /* Section Animations */
+        section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Smooth Scrolling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00d1ff;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4cd6ff;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
@@ -118,7 +279,7 @@
 <span class="material-symbols-outlined hover:text-white transition-colors cursor-pointer" data-icon="terminal">terminal</span>
 <span class="material-symbols-outlined hover:text-white transition-colors cursor-pointer" data-icon="code">code</span>
 </div>
-<a class="hidden md:inline-flex bg-primary-container text-on-primary-container px-sm py-xs font-code text-code rounded hover:bg-primary transition-colors" href="#">Download Resume</a>
+<a class="hidden md:inline-flex bg-primary-container text-on-primary-container px-sm py-xs font-code text-code rounded hover:bg-primary transition-colors" href="https://drive.google.com/file/d/1TJ6jS6n6xhX1coTtoCVQm0l7a0_v--tv/view?usp=sharing" target="_blank">Download Resume</a>
 <button class="md:hidden text-[#00D1FF]"><span class="material-symbols-outlined">menu</span></button>
 </div>
 </div>
@@ -126,42 +287,42 @@
 <!-- Main Content -->
 <main class="max-w-container-max mx-auto px-gutter pt-[100px]">
 <!-- Hero Section -->
-<section class="min-h-[819px] flex flex-col justify-center py-xl border-b border-surface-variant relative overflow-hidden" id="home">
-<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#a4e6ff 1px, transparent 1px); background-size: 32px 32px;"></div>
-<div class="relative z-10 flex items-center gap-lg max-w-5xl">
-<div>
-<h1 class="font-h1 text-h1 text-on-surface mb-xs">Shruti Shinde</h1>
-<h2 class="font-h2 text-h2 text-primary-container mb-md">Aspiring Data Analyst / Software Developer</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg leading-relaxed">
+<section class="min-h-screen md:min-h-[819px] flex flex-col justify-center py-xl border-b border-surface-variant relative overflow-hidden" id="home">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#a4e6ff 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-lg md:gap-xl max-w-5xl w-full">
+<div class="animate-fade-in-left flex-1 w-full md:w-auto">
+<h1 class="font-h1 text-h1 text-on-surface mb-xs stagger-1 animate-fade-in-up">Shruti Shinde</h1>
+<h2 class="font-h2 text-h2 text-primary-container mb-md stagger-2 animate-fade-in-up">Aspiring Data Analyst / Software Developer</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg leading-relaxed stagger-3 animate-fade-in-up">
                     Passionate Computer Science student skilled in Python, HTML, CSS, and cloud technologies. Interested in data analysis, Power BI, SQL, and machine learning. Focused on building robust, data-driven solutions with clean code.
                 </p>
-<div class="flex flex-wrap gap-sm items-center">
-<a class="bg-primary-container text-on-primary-container px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-primary transition-colors" href="#">
+<div class="flex flex-wrap gap-sm items-center stagger-4 animate-fade-in-up">
+<a class="bg-primary-container text-on-primary-container px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-primary hover:shadow-lg transform hover:scale-105 transition-all" href="https://drive.google.com/file/d/1TJ6jS6n6xhX1coTtoCVQm0l7a0_v--tv/view?usp=sharing" target="_blank">
 <span class="material-symbols-outlined" data-weight="fill">download</span>
                         Download Resume
                     </a>
-<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container transition-colors" href="#">
+<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container hover:shadow-lg transform hover:scale-105 transition-all" href="https://www.linkedin.com/in/shruti-shinde-b67883279/" target="_blank">
                         LinkedIn
                     </a>
-<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container transition-colors" href="#">
+<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container hover:shadow-lg transform hover:scale-105 transition-all" href="https://github.com/Shruti307-jpg" target="_blank">
                         GitHub
                     </a>
-<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container transition-colors" href="mailto:shrutishinde7592@gmail.com">
+<a class="border border-outline text-on-surface px-md py-sm font-code text-code rounded flex items-center gap-xs hover:bg-surface-variant hover:border-primary-container hover:shadow-lg transform hover:scale-105 transition-all" href="mailto:shrutishinde7592@gmail.com">
                         Email
                     </a>
 </div>
 </div>
-<img src="profile.jpeg" alt="Shruti Shinde" class="w-48 h-48 rounded-full object-cover border-4 border-primary-container">
+<img src="profile.jpeg" alt="Shruti Shinde" class="profile-image w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-primary-container shadow-xl flex-shrink-0">
 </div>
 </section>
 <!-- About & Skills Section (Asymmetric Layout) -->
-<section class="py-xl border-b border-surface-variant grid grid-cols-1 md:grid-cols-12 gap-lg" id="about">
-<div class="md:col-span-5">
+<section class="py-xl border-b border-surface-variant grid grid-cols-1 md:grid-cols-12 gap-lg" id="about" style="animation-delay: 0.2s;">
+<div class="md:col-span-5 animate-fade-in-left">
 <h3 class="font-h3 text-h3 text-on-surface mb-md flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary-container">person</span>
+<span class="material-symbols-outlined text-primary-container text-xl">person</span>
                     About Me
                 </h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed transition-all hover:text-on-surface">
                     Hi, I’m <strong>Shruti Shinde</strong>, a passionate Computer Science student with a strong interest in data, technology, and building meaningful digital solutions.
 
 I have a solid foundation in <strong>Python, HTML, CSS, and cloud computing</strong>, and I enjoy exploring how technology can solve real-world problems. My learning journey includes certifications in cloud fundamentals from Amazon Web Services and programming through Infosys Springboard, along with prompt engineering knowledge from IBM.
@@ -171,8 +332,10 @@ I am currently focused on developing my skills in <strong>data analysis, Power B
 I’m always eager to learn, grow, and take on new challenges that push my technical and creative boundaries.
                 </p>
 </div>
-<div class="md:col-span-7 bg-surface-container-high rounded-lg p-md border border-outline-variant ambient-shadow transition-all duration-300" id="skills">
-<h3 class="font-h3 text-h3 text-on-surface mb-md">Skills</h3>
+<div class="md:col-span-7 bg-surface-container-high rounded-lg p-md border border-outline-variant ambient-shadow transition-all duration-300" id="skills" style="animation: fadeInRight 0.8s ease-out; animation-delay: 0.3s;">
+<h3 class="font-h3 text-h3 text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container text-xl">build</span>
+Skills</h3>
 <div class="space-y-md">
 <div>
 <h4 class="font-body-lg text-body-lg text-on-surface mb-sm flex items-center gap-xs">
@@ -220,25 +383,27 @@ Core Skills
 </section>
 
 <!-- Certifications -->
-<section class="py-xl border-b border-surface-variant">
-<h3 class="font-h3 text-h3 text-on-surface mb-lg">Certifications</h3>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-sm">
-<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container transition-colors">
+<section class="py-xl border-b border-surface-variant" style="animation-delay: 0.4s;">
+<h3 class="font-h3 text-h3 text-on-surface mb-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container text-xl">verified</span>
+Certifications</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-sm">
+<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container hover:shadow-lg hover:bg-surface-container transition-all transform hover:scale-105 stagger-1 animate-fade-in-up">
 <span class="material-symbols-outlined text-primary-container mb-xs">workspace_premium</span>
 <p class="font-code text-code text-on-surface">AWS Academy Cloud Foundations</p>
 <p class="font-label-caps text-[10px] text-on-surface-variant mt-unit">Amazon Web Services</p>
 </div>
-<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container transition-colors">
+<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container hover:shadow-lg hover:bg-surface-container transition-all transform hover:scale-105 stagger-2 animate-fade-in-up">
 <span class="material-symbols-outlined text-primary-container mb-xs">workspace_premium</span>
 <p class="font-code text-code text-on-surface">Basics of Python</p>
 <p class="font-label-caps text-[10px] text-on-surface-variant mt-unit">Infosys Springboard</p>
 </div>
-<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container transition-colors">
+<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container hover:shadow-lg hover:bg-surface-container transition-all transform hover:scale-105 stagger-3 animate-fade-in-up">
 <span class="material-symbols-outlined text-primary-container mb-xs">workspace_premium</span>
 <p class="font-code text-code text-on-surface">Prompt Engineering for Everyone</p>
 <p class="font-label-caps text-[10px] text-on-surface-variant mt-unit">IBM</p>
 </div>
-<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container transition-colors">
+<div class="bg-surface-container-low border border-outline-variant p-sm rounded hover:border-primary-container hover:shadow-lg hover:bg-surface-container transition-all transform hover:scale-105 stagger-4 animate-fade-in-up">
 <span class="material-symbols-outlined text-primary-container mb-xs">workspace_premium</span>
 <p class="font-code text-code text-on-surface">HTML & CSS Certifications</p>
 <p class="font-label-caps text-[10px] text-on-surface-variant mt-unit">Great Learning</p>
@@ -246,33 +411,37 @@ Core Skills
 </div>
 </section>
 <!-- Career Objective -->
-<section class="py-xl border-b border-surface-variant">
-<h3 class="font-h3 text-h3 text-on-surface mb-lg">Career Objective</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">To secure an opportunity where I can apply my skills in data analysis, software development, and cloud technologies, while continuously learning and contributing to impactful projects.</p>
+<section class="py-xl border-b border-surface-variant" style="animation-delay: 0.5s;">
+<h3 class="font-h3 text-h3 text-on-surface mb-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container text-xl">target</span>
+Career Objective</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed transition-all hover:text-on-surface">To secure an opportunity where I can apply my skills in data analysis, software development, and cloud technologies, while continuously learning and contributing to impactful projects.</p>
 </section>
 <!-- Contact Section -->
-<section class="py-xl" id="contact">
-<div class="max-w-2xl mx-auto text-center">
-<h3 class="font-h3 text-h3 text-on-surface mb-lg">Contact Me</h3>
-<div class="text-left space-y-sm">
-<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
-<span class="text-primary-container">📞</span> +91 8830148125
+<section class="py-xl" id="contact" style="animation-delay: 0.6s;">
+<div class="max-w-2xl mx-auto w-full">
+<h3 class="font-h3 text-h3 text-on-surface mb-lg text-center flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-primary-container text-xl">mail</span>
+Contact Me</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md text-center md:text-left">
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-xs hover:text-primary transition-colors transform hover:scale-105 cursor-pointer">
+<span class="material-symbols-outlined text-primary-container">phone</span> +91 8830148125
 </p>
-<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
-<span class="text-primary-container">📧</span> <a href="mailto:shrutishinde7592@gmail.com" class="hover:text-primary transition-colors">shrutishinde7592@gmail.com</a>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-xs">
+<span class="material-symbols-outlined text-primary-container">mail</span> <a href="mailto:shrutishinde7592@gmail.com" class="hover:text-primary hover:shadow-md transition-all transform hover:scale-105">shrutishinde7592@gmail.com</a>
 </p>
-<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
-<span class="text-primary-container">🔗</span> <a href="https://www.linkedin.com/in/shruti-shinde-b67883279/" class="hover:text-primary transition-colors">LinkedIn</a>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-xs">
+<span class="material-symbols-outlined text-primary-container">link</span> <a href="https://www.linkedin.com/in/shruti-shinde-b67883279/" target="_blank" class="hover:text-primary hover:shadow-md transition-all transform hover:scale-105">LinkedIn</a>
 </p>
-<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
-<span class="text-primary-container">💻</span> <a href="https://github.com/Shruti307-jpg" class="hover:text-primary transition-colors">GitHub</a>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-xs">
+<span class="material-symbols-outlined text-primary-container">code</span> <a href="https://github.com/Shruti307-jpg" target="_blank" class="hover:text-primary hover:shadow-md transition-all transform hover:scale-105">GitHub</a>
 </p>
 </div>
 </div>
 </section>
 </main>
 <!-- Footer Component -->
-<footer class="bg-[#121212] w-full py-12 mt-24 border-t border-[#333333] flat no shadows">
+<footer class="bg-[#121212] w-full py-12 mt-24 border-t border-[#333333] flat no shadows transition-all" style="animation: slideDown 0.8s ease-out;">
 <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
 <div class="text-lg font-black text-zinc-100 font-['Space_Grotesk'] text-xs uppercase tracking-widest">
                 Shruti Shinde
